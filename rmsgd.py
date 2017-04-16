@@ -22,7 +22,11 @@ if (protocol.lower() == "tcp"):
         msg = client.recv(int(msglen))
         print(msg)
 elif (protocol.lower() == "udp"):
-    print("udp option is not yet supported")
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.bind((bind, port))
+    while True:
+        msg, clientAddress = s.recvfrom(255)
+        print(clientAddress)
+        print(msg[1:255])
 else:
     print("Invalid protocol")
-    

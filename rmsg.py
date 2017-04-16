@@ -21,7 +21,8 @@ if protocol.lower() == "tcp":
     s.sendall(buffer)
     s.close()
 elif protocol.lower() == "udp":
-    print("udp option is not yet supported")
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.sendto(buffer, (dstipaddress, dstport))
 else:
     print("Invalid protocol")
     
